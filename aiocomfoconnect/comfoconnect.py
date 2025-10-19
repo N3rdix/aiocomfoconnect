@@ -111,8 +111,9 @@ class ComfoConnect(Bridge):
                     await asyncio.sleep(5)
 
                 except AioComfoConnectNotConnected:
-                    # Reconnect when connection has been dropped
-                    _LOGGER.info("We got disconnected. Reconnecting.")
+                    # Reconnect after 5 seconds when connection has been dropped
+                    _LOGGER.info("We got disconnected. Reconnecting after 5 seconds.")
+                    await asyncio.sleep(5)
 
                 except ComfoConnectNotAllowed as exception:
                     # Passthrough exception if not allowed (because not registered uuid for example )
